@@ -1,0 +1,160 @@
+// Run at command line using 'gradle -q'
+
+import javax.swing.filechooser.FileFilter
+import javax.swing.JFileChooser
+
+defaultTasks 'build'
+
+def templateNamespace = "DeftTemplateGenerator"
+def templateXType = "deftTemplateGenerator"
+def templateLocation = "./templates"
+def selectedTemplate
+def appNameCamelCase
+def appNameHeadlessCamelCase
+def newApplicationPath
+def useCoffeeScript = true
+
+
+task wrapper( type: Wrapper ) {
+	gradleVersion = '1.4'
+}
+
+task greeting() << {
+	println " "
+	println "Creating ExtJS/DeftJS Application Skeleton..."
+	println " "
+}
+
+task getUserInput( dependsOn: greeting ) << {
+	def console = System.console()
+
+	if( console )
+	{
+		
+		def templateParent = new File( templateLocation )
+		def templates = files { templateParent.listFiles() }.findAll { it.isDirectory() }
+		
+		if( templates.size() == 1 )
+		{
+			selectedTemplate = templates[ 0 ]
+		}
+		else if( templates.size() > 1 )
+		{
+			println "Available templates:"
+			templates.eachWithIndex { file, index -> println "  [${ index + 1 }]: ${ file.name }" }
+			println " "
+			def templateIndex = console.readLine( "> Which template would you like to use (1-${templates.size()})? [ default: '1']: " )
+			templateIndex = templateIndex.trim()
+			if( templateIndex.size() == 0 )
+				templateIndex = "1"
+			selectedTemplate = templates[ templateIndex.toInteger() - 1 ]
+		}
+		else
+		{
+			throw new InvalidUserDataException( "There are no template folders in the template root (${ templateLocation })." )
+		}
+		
+		if( !selectedTemplate )
+		{
+			throw new InvalidUserDataException( "You must pick a template for the generator to use." )
+		}
+		
+		useCoffeeScript = console.readLine( "> Generate CoffeeScript source and build tools along with JavaScript? (Y or N) [ default: 'Y']: " )
+		useCoffeeScript = useCoffeeScript.trim()
+
+		if( useCoffeeScript.toLowerCase() == "n" )
+		{
+			useCoffeeScript = false
+			println "CoffeeScript source and build tools will not be generated."
+		}
+		else
+		{
+			useCoffeeScript = true
+			println "CoffeeScript source and build tools will be generated."
+		}
+
+		println " "
+		appNameCamelCase = console.readLine( "> Camel-cased new application name (will be used as root namespace, e.g. MyNewApp): " )
+		appNameCamelCase = appNameCamelCase.trim()
+
+		if( appNameCamelCase?.size() > 0 )
+			appNameHeadlessCamelCase = appNameCamelCase[ 0 ].toLowerCase() + appNameCamelCase.substring( 1 )
+		else
+			throw new InvalidUserDataException( "You must enter an application name." )
+
+		println "Generated application will use the namespace: ${ appNameCamelCase } (e.g. ${ appNameCamelCase }.view.MainPanel)"
+		println "Generated views will use an XType starting with: ${ appNameHeadlessCamelCase } (e.g. ${ appNameHeadlessCamelCase }-view-mainPanel)"
+
+		println " "
+		def pickDirDialog = new JFileChooser(
+		  dialogTitle: "Choose directory for the new application",
+		  fileSelectionMode: JFileChooser.DIRECTORIES_ONLY,
+		  approveButtonText: "Set directory for new application",
+		  acceptAllFileFilterUsed: false
+		)
+
+		result = pickDirDialog.showSaveDialog()
+
+		if( result == JFileChooser.APPROVE_OPTION )
+		{
+		   newApplicationPath = pickDirDialog.getSelectedFile()
+		}
+		else
+		{
+		  throw new InvalidUserDataException( "You must choose the parent directory for the new application." )
+		}
+	
+	
+	}
+	else
+	{
+		logger.error "Cannot get console."
+	}
+}
+
+task build( dependsOn: getUserInput ) << {
+	println " "
+	println "Generating application..."
+	println " "
+
+	ant.copy( todir: newApplicationPath ) {
+		fileset( dir : selectedTemplate.path )
+	}
+	ant.replace( dir: newApplicationPath, token: templateNamespace, value: appNameCamelCase )
+	ant.replace( dir: newApplicationPath, token: templateXType, value: appNameHeadlessCamelCase )
+
+	if( !useCoffeeScript )
+	{
+		new File( newApplicationPath, "build" ).deleteDir()
+		new File( newApplicationPath, "coffee" ).deleteDir()
+		new File( new File( newApplicationPath, "spec" ).path, "coffee" ).deleteDir()
+	}
+
+	File absoluteAppPath = file( newApplicationPath )
+
+	println " "
+	println "Created DeftJS Application Skeleton for ${ appNameCamelCase } at:"
+	println "${ absoluteAppPath.absolutePath }"
+	println " "
+
+	def deftFile = new FileNameFinder().getFileNames( newApplicationPath.path, "**/deft.js" )[ 0 ]
+	def deftDebugFile = new FileNameFinder().getFileNames( newApplicationPath.path, "**/deft-debug.js" )[ 0 ]
+	
+	if( deftFile || deftDebugFile )
+	{
+		println " "
+		println "Attempting to download the latest version of DeftJS from Github..."
+		
+		if( deftFile )
+			ant.get( src:"https://raw.github.com/deftjs/DeftJS/master/build/deft.js", dest: deftFile, ignoreerrors: true )
+		
+		if( deftDebugFile )
+			ant.get( src:"https://raw.github.com/deftjs/DeftJS/master/build/deft-debug.js", dest: deftDebugFile, ignoreerrors: true )
+	}
+	
+	println " "
+	println "Build complete"
+	println " "
+
+}
+

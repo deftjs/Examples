@@ -1,0 +1,92 @@
+fs     = require 'fs'
+path   = require 'path'
+{exec} = require 'child_process'
+
+# Make sure we have our dependencies
+try
+  colors = require 'colors'
+catch error
+  console.error 'Please run `npm install colors` first'
+  process.exit 1
+
+
+# Setup directory paths
+sourceDir = '../coffee'
+outputDir = '../app'
+
+
+# Options for parameterized watchany task
+options =
+  sourceDir: null
+  outputDir: null
+  deployDir: null
+
+
+option '-s', '--source [DIR]', 'CoffeeScript source folder'
+option '-o', '--output [DIR]', 'JavaScript output folder'
+option '-d', '--deploy [DIR]', 'Deployment location to optionally copy the compiled JavaScript into'
+
+
+# Parameterized watch and deploy task.
+# Can be run from command line with options: cake -s ../coffee -o ../app -d ../deployfolder watchany
+task 'watchany', 'Accepts paths as command line options. Automatically recompile CoffeeScript files to JavaScript.', ( opts ) ->
+  options.sourceDir = opts?.source
+  options.outputDir = opts?.output
+  options.deployDir = opts?.deploy
+
+  if( options.sourceDir? and options.outputDir? )
+
+    console.log "Watching coffee files in #{options.sourceDir} for changes and compiling to #{options.outputDir}".yellow
+    console.log "Deploying compiled files to #{options.deployDir}".yellow if options.deployDir?
+    console.log "Press Control-C to quit, don't just close this window. (Stops Node process from continuing to run in the background)".yellow.bold
+    console.log " "
+
+    srcDeployer  = exec "coffee --compile --bare --watch --output #{options.deployDir} #{options.sourceDir}" if options.deployDir?
+
+    console.log "Starting output watcher..."
+    srcWatcher  = exec "coffee --compile --bare --watch --output #{options.outputDir} #{options.sourceDir}"
+    srcWatcher.stderr.on 'data', (data) -> console.error stripEndline(data).red.bold
+
+    srcWatcher.stdout.on 'data', (data) ->
+      # Hacky way to find if something compiled successfully
+      if /compiled/.test data
+        process.stdout.write data.green
+      else
+        process.stderr.write data.red.bold
+        filenameMatch = data.match /^In (.*)\.coffee/
+
+        if filenameMatch and filenameMatch[1]
+          # Add warning into code since watch window is in bg
+          # insertJsError filenameMatch[1], "CoffeeScript compilation error: #{data}"
+          # For future consideration, it won't work to insert the error into the .coffee file since it triggers another compile and will cause an infinite loop.
+          # Maybe writing to a log file that can be monitored by an IDE, etc.?
+          true
+
+  else
+    console.error stripEndline( "You must pass command options for source and output directories" ).red.bold
+    console.error stripEndline( "e.g.: cake -s ../coffee -o ../app watch" ).red.bold
+    console.error stripEndline( "Type 'cake' for a full list of tasks and options." ).red.bold
+
+		
+# Helper for stripping trailing endline when outputting
+stripEndline = (str) ->
+  return str.slice(0, str.length - 1) if str[str.length - 1] is "\n"
+  return str
+
+  
+# Helper for inserting error text into a given file
+insertJsError = (filename, js) ->
+  jsFile = fs.openSync((path.join paths.libDir, "#{filename}.js"), 'w')
+  fs.writeSync jsFile, '#' + js
+  fs.closeSync jsFile
+
+
+stdOutStreamer = (filter) ->
+  (str) ->
+    str = filter str if filter
+    process.stderr.write str
+
+stdErrorStreamer = (filter) ->
+  (str) ->
+    str = filter str if filter
+    process.stderr.write str.red
