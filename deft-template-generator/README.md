@@ -21,6 +21,7 @@ The default template creates a skeleton containing a commonly-used core applicat
     * Contexts (classes that manage application state and fire state-related events)
     * Services (classes that encapsulate interaction with other services, models, stores, etc.)
     * Models
+    * Stores
     * Utils
 * Jasmine test configuration
 * Initial Jasmine specs:
