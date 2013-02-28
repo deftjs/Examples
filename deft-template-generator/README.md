@@ -37,7 +37,7 @@ The default template creates a skeleton containing a commonly-used core applicat
 
 The generator is packaged using the Gradle Wrapper. On Unix, running the `gradlew` shell script will run the generator. On Windows, run the `gradlew.bat` file. 
 
-If you're sure you already have Gradle set up on your system, you can run the `createtemplate_gradle.bat` file in this directory. On any platform, you can also run the generator via command line in this directory (again, if you have Gradle installed), by typing `gradle`.
+If you're sure you already have Gradle set up on your system, you can run the generator via command line in this directory (again, if you have Gradle installed), by typing `gradle`.
 
 The build will prompt you for 3 or 4 simple values:
 
