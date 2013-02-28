@@ -43,7 +43,7 @@ The build will prompt you for 3 or 4 simple values:
 
 * If the ./templates directory contains more than one template folder, you will be prompted to choose which template you wish to use. If there is only one template present, it will be used automatically.
 * Whether you want the generator to include CoffeeScript source code and build tools for the application. Enter Y or N.
-* Your application name. This will be used as the root namespace for the generated code, so use "headless camel notation", like: `MyNewApp`.
+* Your application name. This will be used as the root namespace for the generated code, so use "camel case notation", like: `MyNewApp`.
 * A directory chooser window will open to allow you to pick the directory to generate the new application into. **You probably want to choose a folder within your local web server**.
 
 Once these are entered, the generator will run and the new application will be created in the target directory you chose. A recent version of the DeftJS library is included automatically, but the build will also attempt to download the latest version from Github and copy it to the generated app. Once the generator is finished, you can run the app and the tests by starting your web server and loading these URLs:
