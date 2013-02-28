@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a Gradle build that generates a basic ExtJS/DeftJS application skeleton. A Gradle wrapper batch file called `gradlew.bat` and shell script 'gradlew' are included, which should automatically download Gradle and run the generator. If you prefer to install Gradle yourself, simple instructions for setting up Gradle are below.
+This is a Gradle build that generates a basic ExtJS/DeftJS application skeleton. A Gradle wrapper batch file called `gradlew.bat` and shell script `gradlew` are included, which should automatically download Gradle and run the generator. If you prefer to install Gradle yourself, simple instructions for setting up Gradle are below.
 
 
 ## The Generated Application
