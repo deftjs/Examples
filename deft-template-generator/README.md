@@ -54,7 +54,7 @@ Once these are entered, the generator will run and the new application will be c
 
 ## Customizing the Template
 
-You're free to customize the template used by the generator or create your own template if you wish by adding additional template folders to the `./templates` directory. The default template files are located in `./templates/default`. 
+You're free to customize the template used by the generator or create your own template if you wish by adding additional template folders to the `./templates` directory. The default template files are located in `./templates/default`. There is also a basic [ Grails ](http://grails.org/) application template that uses DeftJS and CoffeeScript. See below for more information and caveats. 
 
 The only items to note is that the build looks for the tokens `DeftTemplateGenerator` and `deftTemplateGenerator` to replace with the generated application name. If necessary, you can edit the token values in the `build.gradle` file, as well as change the directory path for the templates folder.
 
@@ -70,3 +70,18 @@ Gradle is a very powerful Groovy-based build system. It is similar in some ways 
 5. Save the environment settings, then open a command prompt and type "gradle -v" to check Gradle version and ensure it is working.
 
 Full instructions are available at the Gradle site: http://www.gradle.org/docs/current/userguide/installation.html
+
+
+## The DeftJS and Grails Template
+
+In addition to the default template, there is also an included Grails and DeftJS template. Be aware that where the default template is self-contained, the Grails template has more dependencies on your environment. So this is a more advanced, "try it if you know what you're doing" option. It is set up for Grails 2.2.1 or higher, which you would need to have installed on your system.
+
+The template also generates IntelliJ IDEA project files, but to open this project in IDEA without warnings/errors you would need:
+
+* The latest version of IDEA 12.1
+* A Java 1.7 SDK configured within IDEA
+* A Grails 2.2.1 (or higher) SDK configured within IDEA
+
+Note that this Grails app uses the [ coffeescript-compiler ](http://grails.org/plugin/coffeescript-compiler) plugin, so the build option to exclude CoffeeScript source won't affect the generated Grails app. If you wish, you can manually delete the `/src/coffee` folder and modify the `BuildConfig.groovy` and `Config.groovy` files to remove the plugin.
+
+In summary, you're free to run the generated Grails app however you wish to  (command line, etc.). Just keep in mind that trying to open the generated project in IDEA may reqire some additional work or troubleshooting on your part!

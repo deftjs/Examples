@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title id="page-title">DeftTemplateGenerator Jasmine Tests</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jasmine/jasmine.css">
+
+    <style type="text/css">
+    /* Hide any ExtJS loading masks during test runs */
+    .x-css-shadow, .x-mask, .x-mask-msg, .x-layer, .x-mask-msg-default {
+        visibility: hidden;
+    }
+
+    h1 {
+        border-style: solid;
+        border-width: medium;
+        border-color: #5E7D00;
+        background-color: #FFF6CC;
+        font-family: sans-serif;
+        color: #5E7D00;
+        padding: 10px;
+        font-size: larger;
+    }
+
+    body {
+        padding-bottom: 50px;
+    }
+    </style>
+
+    <script type="text/javascript">
+    isFile = /^(file).*/.test( document.URL );
+    if( isFile )
+    {
+        document.write(
+            "<h1>" +
+            "Running Jasmine tests from a file system URL will probably fail. Browser security settings will prevent loading files.<p/>" +
+            "Deploy the files to a web server and run the tests from there.<p/>" +
+            "</h1>"
+        );
+    }
+
+    window.executeJasmineSpecs = function() {
+        jasmine.getEnv().addReporter( new jasmine.HtmlReporter() )
+        jasmine.getEnv().execute()
+    };
+    </script>
+
+    <script type="text/javascript" src="http://cdn.sencha.com/ext/beta/4.2.0.489/ext-all.js"></script>
+    <script type="text/javascript" src="js/deft/deft-debug.js"></script>
+
+    <!-- Jasmine files and custom global utilities -->
+    <script type="text/javascript" src="js/jasmine/jasmine.js"></script>
+    <script type="text/javascript" src="js/jasmine/jasmine-html.js"></script>
+    <script type="text/javascript" src="js/spec/jasmine-global.js"></script>
+
+    <!-- include specs here -->
+    <script type="text/javascript" src="js/spec/BasicTest.js"></script>
+    <script type="text/javascript" src="js/spec/MainPanelTest.js"></script>
+
+    <!-- test launcher -->
+    <script type="text/javascript" src="js/spec/app-jasmine.js"></script>
+
+</head>
+<body>
+    <h1>DeftTemplateGenerator Specification</h1>
+</body>
+</html>

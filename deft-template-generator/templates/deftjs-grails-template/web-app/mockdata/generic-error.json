@@ -1,0 +1,14 @@
+{
+    "data": null,
+    "success": false,
+    "messages": [{
+        "severity": "ERROR",
+        "message": "Generic error message.",
+        "infoMessage": false,
+        "warningMessage": false,
+        "errorMessage": true
+    }],
+    "offset": 0,
+    "itemsPerPage": null,
+    "totalResultsCount": 0
+}

@@ -117,12 +117,16 @@ task build( dependsOn: getUserInput ) << {
 	println "Generating application..."
 	println " "
 
+	// Copy files to destination
 	ant.copy( todir: newApplicationPath ) {
 		fileset( dir : selectedTemplate.path )
 	}
+	
+	// Replace template namespace tokens with user-specified values.
 	ant.replace( dir: newApplicationPath, token: templateNamespace, value: appNameCamelCase )
 	ant.replace( dir: newApplicationPath, token: templateXType, value: appNameHeadlessCamelCase )
 
+	// Remove CoffeeScript code and tools if user chose not to include CoffeeScript.
 	if( !useCoffeeScript )
 	{
 		new File( newApplicationPath, "build" ).deleteDir()
@@ -130,6 +134,12 @@ task build( dependsOn: getUserInput ) << {
 		new File( new File( newApplicationPath, "spec" ).path, "coffee" ).deleteDir()
 	}
 
+	// Rename any copied template files that include the template name to use the user-specified namepace instead.
+	def fileNamesWithTemplateName = new FileNameFinder().getFileNames( newApplicationPath.path, "**/*${ templateNamespace }*.*" )
+	fileNamesWithTemplateName.each { thisFileName ->
+		ant.rename( src: thisFileName, dest: thisFileName.replaceAll( templateNamespace, appNameCamelCase ) )
+	}
+	
 	File absoluteAppPath = file( newApplicationPath )
 
 	println " "
@@ -137,6 +147,7 @@ task build( dependsOn: getUserInput ) << {
 	println "${ absoluteAppPath.absolutePath }"
 	println " "
 
+	// Try to update DeftJS with the latest from Github
 	def deftFile = new FileNameFinder().getFileNames( newApplicationPath.path, "**/deft.js" )[ 0 ]
 	def deftDebugFile = new FileNameFinder().getFileNames( newApplicationPath.path, "**/deft-debug.js" )[ 0 ]
 	
