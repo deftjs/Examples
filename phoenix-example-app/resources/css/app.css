@@ -1,0 +1,158 @@
+/* Add your own styles here. */
+
+.mousepointer { cursor: pointer; }
+
+.add-icon {
+    background: url('../icons/add.png');
+}
+
+.delete-icon {
+    background: url('../icons/delete.png');
+}
+
+.save-icon {
+    background: url('../icons/disk.png');
+}
+
+.cancel-icon {
+    background: url('../icons/control_stop.png');
+}
+
+.copy-icon {
+    background: url('../icons/copy.png');
+}
+
+.editorWithMargin {
+    margin-top: 4px;
+}
+
+.phoenix-logo {
+    margin: 2px 16px 4px 8px !important;
+    display: block !important;
+}
+
+.phoenix-header {
+    font-size: 25px !important;
+    padding: 12px 0px 0px 0px !important;
+}
+
+.phoenix-header-small {
+    font-size: 16px !important;
+    font-family: Helvetica;
+    padding: 18px 0px 0px 18px !important;
+}
+
+.Terrible {
+    background-color: #FF6666 !important;
+    color: black !important;
+}
+
+.Poor {
+    background-color: #FF9966 !important;
+}
+
+.Marginal {
+    background-color: #FFFF99 !important;
+    color: black !important;
+}
+
+.Good {
+    background-color: #CCFF99 !important;
+}
+
+.Great {
+    background-color: #99FF66 !important;
+}
+
+.Excellent {
+    background-color: #00CC00 !important;
+}
+
+.ux-required-field {
+    color: red;
+    font-weight: bold;
+}
+
+.ux-notification-window .x-window-body {
+	text-align: center;
+	padding: 15px 5px 15px 5px;
+	width: 200px;
+}
+
+.ux-notification-icon-success {
+	background-image: url('../icons/accept.png');
+}
+
+.ux-notification-icon-info {
+	background-image: url('../icons/info.png');
+}
+
+.ux-notification-icon-error {
+	background-image: url('../icons/error.png');
+}
+
+.ux-notification-success .x-window-header {
+	background-color: transparent;
+}
+
+body .ux-notification-success {
+	background-color: #A8EDA8;
+}
+
+.ux-notification-success .x-window-body {
+	text-align: center;
+	padding: 15px 5px 18px 5px;
+	width: 200px;
+	background-color: #E8FFE8;
+	border: 0px solid white;
+}
+
+.ux-notification-info .x-window-header {
+	background-color: transparent;
+}
+
+.ux-notification-info .x-window-body {
+	text-align: center;
+	padding: 15px 5px 18px 5px;
+	width: 200px;
+}
+
+.ux-notification-error .x-window-header {
+	background-color: transparent;
+}
+
+body .ux-notification-error {
+	background-color: #FFA3A3;
+}
+
+.ux-notification-error .x-window-body {
+	text-align: center;
+	padding: 15px 5px 18px 5px;
+	width: 200px;
+	background-color: #FFE0E0;
+	border: 0px solid white;
+}
+
+.x-grid-empty-custom {
+    width: auto;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-weight: bold;
+}
+
+.x-grid-center-icon {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.x-action-col-cell {
+    padding-top: 2px; !important
+}
+
+.x-grid-with-row-lines .x-grid-cell-inner {
+    overflow: hidden;
+    padding: 6px 4px;
+    white-space: nowrap;
+}

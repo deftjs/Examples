@@ -1,0 +1,63 @@
+<project name="Phoenix Build File" default="build">
+
+    <target name="clean" description="Remove artifacts in output directory from previous builds.">
+        <delete dir="../app" />
+    </target>
+
+    <target name="init" description="Initialize output directory.">
+        <mkdir dir="../app" />
+    </target>
+
+    <target name="build" depends="init" description="Compiles the CoffeeScript into JavaScript.">
+
+        <echo message="Compiling CoffeeScript..." />
+        <condition property="coffeeExecutable" value="coffee.cmd">
+            <os family="windows"/>
+        </condition>
+        <condition property="coffeeExecutable" value="coffee">
+            <os family="unix"/>
+        </condition>
+
+        <exec dir="../" executable="${coffeeExecutable}">
+            <arg line="-cb -o app coffee" />
+        </exec>
+
+        <exec dir="../spec" executable="${coffeeExecutable}">
+            <arg line="-cb -o js coffee" />
+        </exec>
+
+        <!-- Convert EOL characters to match local OS conventions. -->
+        <fixcrlf srcdir="../app" includes="**/*.js" />
+        <fixcrlf srcdir="../spec/js" includes="**/*.js" />
+
+        <echo message="Done." />
+
+    </target>
+
+    <target name="docs" description="Generates JSDuck API documentation.">
+
+        <condition property="jsDuckExecutable" value="jsduck.exe">
+            <os family="windows"/>
+        </condition>
+
+        <!-- JSDuck on *nix requires a Ruby gem to be installed. See https://github.com/senchalabs/jsduck -->
+        <condition property="jsDuckExecutable" value="jsduck">
+            <os family="unix"/>
+        </condition>
+
+        <delete includeemptydirs="true" failonerror="false">
+            <fileset dir="../docs" />
+        </delete>
+
+        <!-- For some reason, deleting and re-adding the docs folder often causes a write error. A slight delay usually avoids this. -->
+        <sleep seconds="2"/>
+
+        <echo message="Generating API documentation..." />
+        <exec executable="../tools/${jsDuckExecutable}" timeout="20000" failonerror="false">
+            <arg line='--warnings=-all --ext-namespaces=Ext --output=../docs --ignore-global --title="Phoenix - API Documentation" ../app' />
+            <arg line='--head-html="&lt;style type=text/css&gt;.class-categories .section .left-column{float:left;width:350px;margin-left:20px} .class-categories .section .middle-column{float:left;width:350px} .class-categories .section .right-column{float:left;width:350px}&lt;/style&gt;"' />
+        </exec>
+
+    </target>
+
+</project>
