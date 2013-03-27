@@ -5,6 +5,7 @@
 
 Ext.define("Phoenix.controller.ScenarioGridController", {
   extend: "Phoenix.controller.AbstractPhoenixController",
+  requires: ["Ext.data.UuidGenerator"],
   observe: {
     scenarioContext: {
       initialDataLoaded: "loadScenarios"
@@ -22,7 +23,7 @@ Ext.define("Phoenix.controller.ScenarioGridController", {
     }
   },
   config: {
-    uuidGenerator: new Ext.data.UuidGenerator()
+    uuidGenerator: Ext.create("Ext.data.UuidGenerator")
   },
   init: function() {
     return this.callParent(arguments);

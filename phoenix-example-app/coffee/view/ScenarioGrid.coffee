@@ -5,6 +5,11 @@ Ext.define( "Phoenix.view.ScenarioGrid",
 	extend: "Ext.grid.Panel"
 	alias: "widget.phoenix-view-scenarioGrid"
 	controller: "Phoenix.controller.ScenarioGridController"
+	requires: [
+		"Ext.grid.column.Number"
+		"Ext.grid.column.Date"
+		"Ext.grid.column.Action"
+	]
 	inject: [
 		"scenarioStore"
 		"probabilityStore"
@@ -34,14 +39,14 @@ Ext.define( "Phoenix.view.ScenarioGrid",
 				header: "Description"
 				dataIndex: "description"
 				flex: 1
-				renderer: ( value, metaData, record ) ->
+				renderer: ( value, metaData, record ) =>
 					metaData.tdAttr = "data-qtip='#{ value }'"
 					return value
 			,
 				header: "Probability"
 				dataIndex: "probabilityId"
 				width: 145
-				renderer: ( value, metaData, record, row, col, store, gridView ) ->
+				renderer: ( value, metaData, record, row, col, store, gridView ) =>
 					return @getProbabilityStore().getById( value )?.get( "value" )
 			,
 				xtype: "numbercolumn"

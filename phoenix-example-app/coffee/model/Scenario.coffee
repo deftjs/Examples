@@ -6,6 +6,7 @@ Ext.define( "Phoenix.model.Scenario",
 	requires: [
 		"Phoenix.model.ScenarioItem"
 		"Phoenix.store.ScenarioItemStore"
+		"Ext.data.UuidGenerator"
 	]
 
 

@@ -5,7 +5,7 @@ Collection of {Phoenix.model.Scenario} models.
 
 Ext.define("Phoenix.store.ScenarioStore", {
   extend: "Ext.data.Store",
-  requires: ["Phoenix.model.Scenario"],
+  requires: ["Phoenix.model.Scenario", "Ext.data.proxy.LocalStorage"],
   inject: ["appConfig"],
   config: {
     appConfig: null

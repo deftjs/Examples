@@ -5,7 +5,7 @@
 
 Ext.define("Phoenix.model.Scenario", {
   extend: "Ext.data.Model",
-  requires: ["Phoenix.model.ScenarioItem", "Phoenix.store.ScenarioItemStore"],
+  requires: ["Phoenix.model.ScenarioItem", "Phoenix.store.ScenarioItemStore", "Ext.data.UuidGenerator"],
   idProperty: "id",
   fields: [
     {

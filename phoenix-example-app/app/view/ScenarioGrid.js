@@ -7,6 +7,7 @@ Ext.define("Phoenix.view.ScenarioGrid", {
   extend: "Ext.grid.Panel",
   alias: "widget.phoenix-view-scenarioGrid",
   controller: "Phoenix.controller.ScenarioGridController",
+  requires: ["Ext.grid.column.Number", "Ext.grid.column.Date", "Ext.grid.column.Action"],
   inject: ["scenarioStore", "probabilityStore"],
   config: {
     scenarioStore: null,
@@ -14,6 +15,7 @@ Ext.define("Phoenix.view.ScenarioGrid", {
   },
   title: "Scenarios",
   initComponent: function() {
+    var _this = this;
     Ext.apply(this, {
       store: this.getScenarioStore(),
       columns: [
@@ -36,7 +38,7 @@ Ext.define("Phoenix.view.ScenarioGrid", {
           width: 145,
           renderer: function(value, metaData, record, row, col, store, gridView) {
             var _ref;
-            return (_ref = this.getProbabilityStore().getById(value)) != null ? _ref.get("value") : void 0;
+            return (_ref = _this.getProbabilityStore().getById(value)) != null ? _ref.get("value") : void 0;
           }
         }, {
           xtype: "numbercolumn",

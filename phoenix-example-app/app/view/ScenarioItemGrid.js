@@ -6,6 +6,7 @@
 Ext.define("Phoenix.view.ScenarioItemGrid", {
   extend: "Ext.grid.Panel",
   alias: "widget.phoenix-view-scenarioItemGrid",
+  requires: ["Ext.grid.plugin.CellEditing", "Ext.selection.CellModel"],
   inject: ["affectedItemStore", "probabilityStore", "revenueImpactStore"],
   config: {
     affectedItemStore: null,
