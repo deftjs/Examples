@@ -1,4 +1,4 @@
-# Phoenix Cmd: A DeftJS Example Application using Sencha Cmd
+# Phoenix Cmd: A Deft JS Example Application using Sencha Cmd
 
 ## Introduction
 
@@ -26,5 +26,3 @@ The application demonstrates a wide range of DeftJS features, including:
 ## Running the App
 
 Drop the application into a local web server and load up the index.html page in a current browser that supports client storage. You can add new scenarios, add affected items to scenarios, and edit or delete affected items and scenarios. Multiple scenarios can be opened and edited at the same time.
-
-The application was written with CoffeeScript (located in the /coffee folder), but all of the generated JavaScript is also included (in the /app folder). The Sencha CDN system is used to load the final release of ExtJS 4.2.
