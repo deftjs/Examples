@@ -1,0 +1,9 @@
+{
+    "name": "Phoenix",
+
+    "requires": [
+        "deft@0.9.0?"
+    ],
+
+    "id": "c5af0297-7db0-4d1a-94cd-e1019b72ab34"
+}

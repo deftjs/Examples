@@ -1,0 +1,12 @@
+{
+  "--title": "Deft JS - v0.9.1 API Documentation",
+  "--ignore-global": true,
+  "--head-html": [
+    "<link rel=\"stylesheet\" href=\"theme/resources/css/theme.css\" type=\"text/css\" />",
+    "<script type=\"text/javascript\" src=\"theme/resources/js/theme.js\"></script>"
+  ],
+  "--output": "docs",
+  "--": [
+    "src/js"
+  ]
+}

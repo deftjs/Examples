@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="deft" default=".help">
+
+    <property file="build.properties" />
+    
+    <property name="skip.style" value="1" />
+    
+    <!--
+        The build-impl.xml file imported here contains the guts of the build process. It is
+        a great idea to read that file to understand how the process works, but it is best to
+        limit your changes to this file.
+    -->
+    <import file="${basedir}/.sencha/package/build-impl.xml"/>
+
+    <!--
+        The following targets can be provided to inject logic before and/or after key steps
+        of the build process:
+
+        The "init-local" target is used to initialize properties that may be personalized
+        for the local machine.
+
+        <target name="-before-init-local"/>
+        <target name="-after-init-local"/>
+
+        The "clean" target is used to clean build output from the build.dir.
+
+        <target name="-before-clean"/>
+        <target name="-after-clean"/>
+
+        The general "init" target is used to initialize all other properties, including
+        those provided by Sencha Cmd.
+
+        <target name="-before-init"/>
+        <target name="-after-init"/>
+
+        The "build" target performs the call to Sencha Cmd to build the application.
+
+        <target name="-before-build"/>
+        <target name="-after-build"/>
+    -->
+
+    <target name="-before-build" description="Sencha Cmd build extension point">
+
+        <ant target="compile" />
+
+    </target>
+    
+    <target name="-after-js" description="Sencha Cmd package extension point">
+        
+        <antcall target="copyright">
+            <param name="file" value="${package.dir}/build/deft-debug.js" />
+        </antcall>
+
+        <antcall target="copyright">
+            <param name="file" value="${package.dir}/build/deft-dev.js" />
+        </antcall>
+        
+        <antcall target="copyright">
+            <param name="file" value="${package.dir}/build/deft.js" />
+        </antcall>
+        
+    </target>
+
+    <target name="-before-pkg" description="Sencha Cmd package extension point">
+
+        <antcall target="docs" />
+
+    </target>
+    
+    <target name="copyright" description="Add version and copyright notice header.">
+    
+        <echo message="Adding copyright notice to ${file}" />
+        <concat destfile="${file}-with-copyright" encoding="UTF-8" outputencoding="UTF-8">
+            <header>${deftjs.copyright.notice}</header>
+            <fileset file="${file}" />
+        </concat>
+        
+        <move file="${file}-with-copyright" tofile="${file}" />
+    
+    </target>
+
+    <target name="compile" description="Compiles CoffeeScript">
+
+        <!-- CoffeeScript should be installed and made available via your PATH.  See: http://coffeescript.org/#installation -->
+        <condition property="coffeeExecutable" value="coffee.cmd">
+            <os family="windows"/>
+        </condition>
+        <condition property="coffeeExecutable" value="coffee">
+            <os family="unix"/>
+        </condition>
+
+        <echo message="Compiling CoffeeScript..." />
+
+        <echo message="Compiling CoffeeScript in ${package.dir}/src/coffee to ${package.dir}/src/js" />
+        <exec dir="src" executable="${coffeeExecutable}">
+            <arg line="-cbo js coffee" />
+        </exec>
+
+        <echo message="Compiling CoffeeScript in ${package.dir}/test/coffee to ${package.dir}/test/js" />
+        <exec dir="test" executable="${coffeeExecutable}">
+            <arg line="-cbo js coffee" />
+        </exec>
+
+    </target>
+
+    <target name="docs" description="Generates JSDuck API documentation">
+
+        <!-- JSDuck should be installed and made available via your PATH. See: https://github.com/senchalabs/jsduck/wiki/Installation -->
+        <condition property="jsDuckExecutable" value="jsduck.exe">
+            <os family="windows" />
+        </condition>
+        <condition property="jsDuckExecutable" value="jsduck">
+            <os family="unix" />
+        </condition>
+
+        <delete includeemptydirs="true" failonerror="false">
+            <fileset dir="./docs" />
+        </delete>
+
+        <!-- For some reason, deleting and re-adding the docs folder often causes a write error. A slight delay usually avoids this. -->
+        <sleep seconds="2" />
+        
+        <!-- Create updated JSDuck configuration file. -->
+        <loadfile property="jsduck.config" srcFile=".jsduck/jsduck.template.json">
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </loadfile>
+        <echo message="${jsduck.config}" file="jsduck.json" />
+
+        <echo message="Generating API documentation..." />
+        <exec executable="${jsDuckExecutable}" timeout="20000" failonerror="false" />
+        
+        <echo message="Applying custom JSDuck theme..." />
+        <copy todir="docs" overwrite="true">
+            <fileset file=".jsduck/theme/favicon.ico"></fileset>
+        </copy>
+        <copy todir="docs/theme/resources">
+            <fileset dir=".jsduck/theme/resources"></fileset>
+        </copy>
+
+    </target>
+
+    <target name="test" description="Tests the build against all supported versions of Sencha Touch and Ext JS">
+
+        <ant dir="test" />
+
+    </target>
+
+</project>
