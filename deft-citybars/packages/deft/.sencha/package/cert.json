@@ -1,0 +1,23 @@
+{
+  "data": {
+    "created": "2013-06-25T22:38:40Z",
+    "email": "deftjs@deftjs.org",
+    "expires": "2018-06-26T00:00:00Z",
+    "name": "Deft JS",
+    "uuid": "8e97d80f-9803-4760-99a3-4f4eede155a6"
+  },
+  "publicKey": {
+    "algorithm": "RSA",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx3iC6AlLFGrdA9alwrjCFn0nwNMuS2oO+chmPVkz5bLa2jvkACf3t7CkwkDxc+/v2+HN+USuFfsz+fZWFBej9kNvxbuZPGk2FIaR+3WFf3Qdx9HLSiodBJ08lq9KRrOq+X4fLn3L5X68AnN1KgRH2pUOsjf0nXxi1OxgfPeTPARnD649PGCeCfOro5bxzW8GrNN374HMXXET5bo3AOf8gOhC54fVaW+U2oUaF7U916P37Kqs7sL98yVyNsXCAYS6OVf6JqKFVK4+XARY+zcIWGympp8UlK1MSuhP63Dgk4AsT1ocfLzF80697GgttSnQYNI6yFUscF0vhn9sApYTZQIDAQAB"
+  },
+  "signatures": [
+    {
+      "name": "Deft JS",
+      "uuid": "8e97d80f-9803-4760-99a3-4f4eede155a6",
+      "created": "2013-06-25T22:38:41Z",
+      "algorithm": "SHA1withRSA",
+      "nonce": "5z238oinnv8\u003d",
+      "signature": "Vz7kdTyvwKxpvAUuXpVOqQNDvvD5HlNWhFq0HpSq9bBAiNCw1FMey6+PR44XxLUP3UaE/bHQPtf02RpsfRkMZ3fpSfMSWqdLjpL9mROxTyCnRxP1OZLv5ytDpAwxHPvL7AztzmSWFGeOOtzfetz01FueacqqJSYv4aP9/GLUAyZukx6s+JuhoSGx7nVxOIGtsXOVRzbcassU0ZIb+fliBiVw/24XuG/Cl6SJI7Rs/NLDUrxV034wvP+lqjn38KMR+6tiSvy3JoVqTzh4HUFLWu8A4iH9v6gYwsNlwq+VsaMgPnOpLxJRrfckgHpmncU4vV3MY4e3+rz8YRynCHVJkA\u003d\u003d"
+    }
+  ]
+}
