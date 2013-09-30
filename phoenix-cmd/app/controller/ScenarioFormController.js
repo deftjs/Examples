@@ -77,17 +77,17 @@ Ext.define("Phoenix.controller.ScenarioFormController", {
       }
     }).always(function() {
       return _this.getView().setLoading(false);
-    });
+    }).done();
   },
   /**
   	* Copies the passed {Phoenix.model.Scenario}.
   	* @param {Phoenix.model.Scenario} Scenario to copy.
   */
 
-  saveScenarioCopy: function(scenario) {
+  saveScenarioCopy: function(scenario,original) {
     var _this = this;
     this.getView().setLoading(true);
-    return this.getScenarioService().saveScenario(scenario).then({
+    return this.getScenarioService().saveScenarioCopy(scenario,original).then({
       success: function() {
         _this.getNotificationService().success("Success", "The scenario was copied successfully.");
         return _this.getScenarioContext().scenarioOpened(scenario);
@@ -97,7 +97,7 @@ Ext.define("Phoenix.controller.ScenarioFormController", {
       }
     }).always(function() {
       return _this.getView().setLoading(false);
-    });
+    }).done();
   },
   /**
   	* Adds a new {Phoenix.model.ScenarioItem} to the set of items associated with the current {Phoenix.model.Scenario}.
@@ -140,6 +140,6 @@ Ext.define("Phoenix.controller.ScenarioFormController", {
   onCopyButtonClick: function() {
     var copyOfScenario;
     copyOfScenario = this.getScenario().copy();
-    return this.saveScenarioCopy(copyOfScenario);
+    return this.saveScenarioCopy(copyOfScenario,this.getScenario());
   }
 });

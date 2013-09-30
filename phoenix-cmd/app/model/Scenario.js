@@ -81,20 +81,27 @@ Ext.define("Phoenix.model.Scenario", {
   */
 
   copy: function() {
-    var generator, newScenario;
+    var generator, newScenario, newScenarioId;
     generator = new Ext.data.UuidGenerator();
-    newScenario = this.callParent(arguments);
-    newScenario.setId(generator.generate());
+    newScenarioId = generator.generate();
+    newScenario = this.callParent([newScenarioId]);
     newScenario.set("name", "" + (newScenario.get('name')) + " (Copy)");
-    this.scenarioItems().each(function(scenarioItem) {
-      var newItem;
+    return newScenario;
+  },
+  
+  copyScenarioItems: function(source,target) {
+    var generator;
+    generator = new Ext.data.UuidGenerator();
+    source.scenarioItems().each(function(scenarioItem) {
+      var newItem, newItemId;
+      newItemId = generator.generate();
       newItem = scenarioItem.copy();
-      newItem.setId(generator.generate());
-      newItem.set("scenarioId", newScenario.getId());
-      newScenario.scenarioItems().add(newItem);
+      target.scenarioItems().add(newItem);
+      newItem.setId(newItemId);
+      newItem.set("scenarioId", target.getId());
       return true;
     });
-    return newScenario;
+    return;
   },
   /**
   	* Simulates a process that would normally happen on the server. Creates mock disaster plan analysis values

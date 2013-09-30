@@ -1,0 +1,2 @@
+sencha app refresh
+pause

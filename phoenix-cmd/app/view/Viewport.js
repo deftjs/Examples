@@ -19,10 +19,10 @@ Ext.define("Phoenix.view.Viewport", {
           height: 60,
           items: [
             {
-              xtype: "image",
-              src: "resources/icons/phoenix_logo.png",
+              xtype: "component",
               cls: "phoenix-logo",
-              width: 120
+              width: 120,
+              height: 50
             }, {
               xtype: "component",
               html: "<strong>Phoenix</strong>: Disaster Recovery Scenario Tool",

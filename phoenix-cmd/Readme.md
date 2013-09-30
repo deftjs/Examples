@@ -1,4 +1,4 @@
-# Phoenix Cmd: A Deft JS Example Application using Sencha Cmd
+# Phoenix Cmd: A DeftJS Example Application using Sencha Cmd
 
 ## Introduction
 
@@ -8,8 +8,9 @@ For a full description of using Deft JS with Sencha Cmd, please refer to the wik
 
 ## Application Highlights
 
-The application demonstrates a wide range of DeftJS features, including:
+The application demonstrates a wide range of Deft JS features, including:
 
+* Building a Deft JS application using Sencha Cmd
 * An architecture which uses models, views, ViewControllers, services, and stores
 * Application configuration class (AppConfig)
 * Application initialization and data loading at startup

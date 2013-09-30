@@ -41,7 +41,7 @@ Ext.define("Phoenix.controller.ScenarioGridController", {
       }
     }).always(function() {
       return _this.getView().setLoading(false);
-    });
+    }).done();
   },
   /**
   	* Deletes the passed {Phoenix.model.Scenario}.
@@ -61,7 +61,7 @@ Ext.define("Phoenix.controller.ScenarioGridController", {
       }
     }).always(function() {
       return _this.getView().setLoading(false);
-    });
+    }).done();
   },
   /**
   	* Handles a click on the add button and opens a new Scenario view.

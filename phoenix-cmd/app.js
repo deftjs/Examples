@@ -7,6 +7,15 @@
 // DO NOT DELETE - this directive is required for Sencha Cmd packages to work.
 //@require @packageOverrides
 
+//<debug>
+Ext.Loader.setPath({
+    'Ext': 'ext/src',
+    'Deft': 'packages/deft/src/js',
+    'Phoenix': 'app'
+});
+Ext.syncRequire(['Deft.mixin.Injectable','Deft.mixin.Controllable']);
+//</debug>
+
 Ext.application({
     name: 'Phoenix',
 
@@ -14,3 +23,4 @@ Ext.application({
     
     autoCreateViewport: false
 });
+

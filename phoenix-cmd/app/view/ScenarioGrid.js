@@ -90,9 +90,8 @@ Ext.define("Phoenix.view.ScenarioGrid", {
           items: [
             {
               itemId: "scenarioDeleteButton",
-              icon: "resources/icons/delete.png",
               tooltip: "Delete Scenario",
-              iconCls: "mousepointer .x-grid-center-icon"
+              iconCls: "delete-icon mousepointer x-grid-center-icon"
             }
           ]
         }

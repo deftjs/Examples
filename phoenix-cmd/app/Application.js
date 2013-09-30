@@ -5,7 +5,7 @@
 
 Ext.define("Phoenix.Application", {
   extend: "Deft.mvc.Application",
-  requires: ["Deft.mixin.Controllable","Deft.mixin.Injectable","Phoenix.config.AppConfig", "Phoenix.view.Viewport", "Phoenix.store.ScenarioStore", "Phoenix.service.ScenarioService", "Phoenix.context.ScenarioContext", "Phoenix.store.ProbabilityStore", "Phoenix.store.RevenueImpactStore", "Phoenix.store.AffectedItemStore", "Phoenix.service.NotificationService"],
+  requires: ["Deft.mixin.Controllable","Deft.mixin.Injectable","Deft.promise.Deferred","Phoenix.config.AppConfig", "Phoenix.view.Viewport", "Phoenix.store.ScenarioStore", "Phoenix.service.ScenarioService", "Phoenix.context.ScenarioContext", "Phoenix.store.ProbabilityStore", "Phoenix.store.RevenueImpactStore", "Phoenix.store.AffectedItemStore", "Phoenix.service.NotificationService","Ext.app.Application"],
   /**
   	* init() runs when Ext.onReady() is called.
   */
@@ -13,7 +13,6 @@ Ext.define("Phoenix.Application", {
   init: function() {
     this.beforeInit();
     Deft.Injector.configure(this.buildInjectorConfiguration());
-    Deft.promise.Deferred.enableLogging = false;
     return this.afterInit();
   },
   /**

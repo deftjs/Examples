@@ -77,118 +77,127 @@
 /* line 9, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .delete-icon {
   background: url("icons/delete.png");
+  width: 16px;
+  height: 16px;
 }
 
-/* line 13, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 15, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .save-icon {
   background: url("icons/disk.png");
 }
 
-/* line 17, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 19, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .cancel-icon {
   background: url("icons/control_stop.png");
 }
 
-/* line 21, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 23, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .copy-icon {
   background: url("icons/copy.png");
 }
 
-/* line 25, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 27, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .editorWithMargin {
   margin-top: 4px;
 }
 
-/* line 29, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 31, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .phoenix-logo {
   margin: 2px 16px 4px 8px !important;
   display: block !important;
+  background-image: url(icons/phoenix_logo.png);
+  background-repeat: no-repeat;
+  width: auto;
+  /*or your image's width*/
+  height: auto;
+  /*or your image's height*/
+  padding: 0;
 }
 
-/* line 34, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 41, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .phoenix-header {
   font-size: 25px !important;
   padding: 12px 0px 0px 0px !important;
 }
 
-/* line 39, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 46, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .phoenix-header-small {
   font-size: 16px !important;
   font-family: Helvetica;
   padding: 18px 0px 0px 18px !important;
 }
 
-/* line 45, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 52, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .Terrible {
   background-color: #FF6666 !important;
   color: black !important;
 }
 
-/* line 50, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 57, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .Poor {
   background-color: #FF9966 !important;
 }
 
-/* line 54, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 61, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .Marginal {
   background-color: #FFFF99 !important;
   color: black !important;
 }
 
-/* line 59, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 66, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .Good {
   background-color: #CCFF99 !important;
 }
 
-/* line 63, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 70, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .Great {
   background-color: #99FF66 !important;
 }
 
-/* line 67, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 74, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .Excellent {
   background-color: #00CC00 !important;
 }
 
-/* line 71, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 78, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-required-field {
   color: red;
   font-weight: bold;
 }
 
-/* line 76, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 83, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-window .x-window-body {
   text-align: center;
   padding: 15px 5px 15px 5px;
   width: 200px;
 }
 
-/* line 82, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 89, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-icon-success {
   background-image: url("icons/accept.png");
 }
 
-/* line 86, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 93, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-icon-info {
   background-image: url("icons/info.png");
 }
 
-/* line 90, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 97, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-icon-error {
   background-image: url("icons/error.png");
 }
 
-/* line 94, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 101, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-success .x-window-header {
   background-color: transparent;
 }
 
-/* line 98, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 105, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 body .ux-notification-success {
   background-color: #A8EDA8;
 }
 
-/* line 102, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 109, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-success .x-window-body {
   text-align: center;
   padding: 15px 5px 18px 5px;
@@ -197,29 +206,29 @@ body .ux-notification-success {
   border: 0px solid white;
 }
 
-/* line 110, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 117, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-info .x-window-header {
   background-color: transparent;
 }
 
-/* line 114, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 121, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-info .x-window-body {
   text-align: center;
   padding: 15px 5px 18px 5px;
   width: 200px;
 }
 
-/* line 120, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 127, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-error .x-window-header {
   background-color: transparent;
 }
 
-/* line 124, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 131, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 body .ux-notification-error {
   background-color: #FFA3A3;
 }
 
-/* line 128, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 135, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .ux-notification-error .x-window-body {
   text-align: center;
   padding: 15px 5px 18px 5px;
@@ -228,7 +237,7 @@ body .ux-notification-error {
   border: 0px solid white;
 }
 
-/* line 136, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 143, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .x-grid-empty-custom {
   width: auto;
   text-align: center;
@@ -237,19 +246,19 @@ body .ux-notification-error {
   font-weight: bold;
 }
 
-/* line 144, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 151, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .x-grid-center-icon {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
 
-/* line 150, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 157, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .x-action-col-cell {
   padding-top: 2px;
 }
 
-/* line 154, ../../../../packages/phoenix-theme/sass/etc/all.scss */
+/* line 161, ../../../../packages/phoenix-theme/sass/etc/all.scss */
 .x-grid-with-row-lines .x-grid-cell-inner {
   overflow: hidden;
   padding: 6px 4px;

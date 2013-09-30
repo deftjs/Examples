@@ -8,6 +8,8 @@
 
 .delete-icon {
     background: url('icons/delete.png');
+    width: 16px;
+    height: 16px;
 }
 
 .save-icon {
@@ -29,6 +31,11 @@
 .phoenix-logo {
     margin: 2px 16px 4px 8px !important;
     display: block !important;
+    background-image: url(icons/phoenix_logo.png);
+    background-repeat: no-repeat;
+    width: auto; /*or your image's width*/
+    height: auto; /*or your image's height*/
+    padding: 0;
 }
 
 .phoenix-header {

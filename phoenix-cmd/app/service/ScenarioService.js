@@ -4,6 +4,7 @@
 */
 
 Ext.define("Phoenix.service.ScenarioService", {
+  requires: ["Deft.promise.Chain"],
   inject: ["scenarioStore", "probabilityStore", "revenueImpactStore", "affectedItemStore"],
   config: {
     scenarioStore: null,
@@ -127,6 +128,21 @@ Ext.define("Phoenix.service.ScenarioService", {
     }
     return Deft.Chain.sequence(sequence, this);
   },
+  
+  saveScenarioCopy: function(scenario,original) {
+    var sequence;
+    if (this.isNewScenario(scenario)) {
+      this.getScenarioStore().add(scenario);
+    }
+    scenario.set("dateUpdated", new Date());
+    scenario.simulateServerCostBenefitAnalysis();
+    sequence = [ this.syncScenarioStore ];
+    sequence.push(function() {
+        return this.syncScenarioItemsStore(scenario,original);
+      });
+    return Deft.Chain.sequence(sequence, this);
+  },
+  
   /**
   	* Deletes the passed {Phoenix.model.Scenario} and its associated {Phoenix.model.ScenarioItem} models.
   	* @param {Phoenix.model.Scenario} Scenario to delete.
@@ -169,20 +185,28 @@ Ext.define("Phoenix.service.ScenarioService", {
   	* @return {Deft.promise.Promise}
   */
 
-  syncScenarioItemsStore: function(scenario) {
+  syncScenarioItemsStore: function(scenario,original) {
     var deferred;
     deferred = Ext.create("Deft.promise.Deferred");
-    scenario.updateScenarioItemsAssociation();
-    scenario.scenarioItems().sync({
-      success: function(batch, options) {
-        return deferred.resolve();
-      },
-      failure: function(batch, options) {
-        scenario.scenarioItems().rejectChanges();
-        return deferred.reject();
-      },
-      scope: this
-    });
+    if (original != null) {
+      original.copyScenarioItems(original, scenario);
+    }
+    if (scenario.scenarioItems().isSyncNeeded()) {
+        scenario.updateScenarioItemsAssociation();
+        scenario.scenarioItems().sync({
+          success: function(batch, options) {
+            return deferred.resolve();
+          },
+          failure: function(batch, options) {
+            scenario.scenarioItems().rejectChanges();
+            return deferred.reject();
+          },
+          scope: this
+        });
+    }
+    else {
+      deferred.resolve();
+    }
     return deferred.promise;
   },
   /**
