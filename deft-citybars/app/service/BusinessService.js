@@ -1,4 +1,7 @@
 Ext.define("CityBars.service.BusinessService", {
+    requires: [
+        "Deft.promise.Chain"
+    ],
     inject: ["businessStore"],
   
     config: {

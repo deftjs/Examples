@@ -9,7 +9,7 @@
 // This Loader config is used when running the app directly from the source, rather than a compiled build...
 //<debug>
 Ext.Loader.setPath({
-    'Ext': 'touch/src'
+    'Ext': 'touch/src',
     'Deft': 'packages/deft/src/js',
     'CityBars': 'app'
 });
