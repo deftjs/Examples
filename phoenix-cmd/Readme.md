@@ -1,4 +1,4 @@
-# Phoenix Cmd: A DeftJS Example Application using Sencha Cmd
+# Phoenix Cmd: A DeftJS Example Application using Sencha Cmd (4.0.1.45)
 
 ## Introduction
 

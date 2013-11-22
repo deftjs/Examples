@@ -13,6 +13,7 @@ Ext.define("Phoenix.Application", {
   init: function() {
     this.beforeInit();
     Deft.Injector.configure(this.buildInjectorConfiguration());
+    //Deft.promise.Deferred.enableLogging = false;
     return this.afterInit();
   },
   /**

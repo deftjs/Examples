@@ -31,7 +31,7 @@ Ext.define("Phoenix.view.Viewport", {
               height: 50
             }, {
               xtype: "component",
-              html: "(A <strong><a href='http://deftjs.org' target='_blank' muse_scanned='true'>DeftJS</a></strong> Example Application using Sencha Cmd)",
+              html: "(A <strong><a href='http://deftjs.org' target='_blank' muse_scanned='true'>DeftJS</a></strong> Example Application using Sencha Cmd 4.0.1.45)",
               border: false,
               cls: "phoenix-header-small",
               height: 50

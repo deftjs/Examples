@@ -10,7 +10,6 @@ Ext.define("Phoenix.view.MainPanel", {
   controller: "Phoenix.controller.MainPanelController",
   header: false,
   plain: true,
-  title: "PHOENIX Disaster Recovery Scenario Planner (DeftJS Example Application)",
   initComponent: function() {
     Ext.applyIf(this, {
       items: [
