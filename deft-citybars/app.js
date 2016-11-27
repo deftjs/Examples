@@ -13,7 +13,7 @@ Ext.Loader.setPath({
     'Deft': 'packages/deft/src/js',
     'CityBars': 'app'
 });
-Ext.syncRequire(['Deft.mixin.Injectable','Deft.mixin.Controllable']);
+Ext.syncRequire(['Deft.mixin.Injectable','Deft.mixin.Controllable','Deft.promise.Chain']);
 //</debug>
 
 //@require Deft.mixin.Injectable
